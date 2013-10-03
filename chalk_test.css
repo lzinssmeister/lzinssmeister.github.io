@@ -1,0 +1,134 @@
+/* GENERAL STYLES
+----------------------------*/
+html, body, h1, form, fieldset, legend, ol, li {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #2b3434;
+  color: #2b3434;
+  font-family: "ff-tisa-sans-web-pro", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* UTILITY STYLES
+----------------------------*/
+.hide {
+  display: none;
+}
+
+/* FORM STYLES
+----------------------------*/
+#inputForm {
+  background: #f0f7f7;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 20px;
+  width: 400px;
+  margin: 45px auto;
+  color: #7b8787;
+}
+#inputForm fieldset {
+  border: none;
+  margin-bottom: 1.25em;
+  text-align: center;
+}
+#inputForm legend {
+  margin-bottom: 1.25em;
+  font-family: "ff-tisa-web-pro", Georgia, serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+#inputForm label {
+  float: left;
+  font-size: 16px;
+  width: 110px;
+}
+#inputForm fieldset label {
+  background:none no-repeat left 50%;
+  line-height: 20px;
+  padding: 7px 0 0 30px;
+  width: auto;
+}
+#inputForm fieldset label:hover {
+  cursor: pointer;
+}
+#inputForm input,
+#inputForm select {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  outline: none;
+  padding: 5px;
+  width: 200px;
+}
+#inputForm input:focus,
+#inputForm select:focus {
+  border: 1px solid #00c3c2;
+}
+#inputForm input {
+  height: 17px;
+  width: 238px;
+  margin-left: -3px;
+}
+#inputForm select {
+  height: 25px;
+  width: 250px;
+}
+#inputForm button {
+  background: #00c3c2;
+  border: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  font: 18px "ff-tisa-web-pro", Georgia, serif;
+  margin: 2em auto 0;
+  padding: 7px 25px;
+  width: 335px;
+}
+#inputForm button:hover {
+  background: #00baba;
+  cursor: pointer;
+}
+#inputForm ol li {
+  line-height: 30px;
+  list-style: none;
+  padding: 5px 10px;
+  margin-bottom: 2px;
+}
+#inputForm ol ol li {
+  background: none;
+  border: none;
+  float: left;
+}
+
+/* RESULT STYLES
+----------------------------*/
+.resultContainer {
+  background: #f0f7f7;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 20px;
+  width: 400px;
+  margin: 45px auto;
+  color: #7b8787;
+  text-align: center;
+}
+.guess {
+  font-size: 72px;
+}
+.female, .icon-female {
+  color: #ec86d5;
+}
+.male, .icon-male {
+  color: #00baba;
+}

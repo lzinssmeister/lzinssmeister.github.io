@@ -3,31 +3,13 @@
 <head>
   <title>Chalk Test</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <style type="text/css">
-    .hide {
-      display: none;
-    }
-    html, body, h1, form, fieldset, legend, ol, li {
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background: #2b3434;
-      color: #2b3434;
-      font-family: Helvetica, Arial, sans-serif;
-      padding: 20px;
-    }
-    #inputForm {
-      background: #98d64c;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      padding: 20px;
-      width: 400px;
-      margin: 45px auto;
-      color: #fff;
-    }
-  </style>
+  <script type="text/javascript" src="//use.typekit.net/yci3nkf.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+
+  <link rel="stylesheet" href="chalk_test.css">
+  <link rel="stylesheet" href="font-styles.css">
+  <!--[if lte IE 7]><script src="font-lte-ie7.js"></script><![endif]-->
 </head>
 <body>
   <!-- Please write an app that takes in a person's height and weight and then guesses that person's gender. You will probably want to create a way to base the prediction on some sample data and don't worry too much about making the app statistically accurate. -->
@@ -53,8 +35,8 @@
         </select>
       </li>
       <li>
-        <label for="inputWeight">Weight:</lable>
-        <input id="inputWeight" name="inputWeight" type="number" placeholder="Enter Weight in Pounds" required>
+        <label for="inputWeight">Weight:</label>
+        <input id="inputWeight" name="inputWeight" type="number" placeholder="Enter Weight in Lbs" required>
       </li>
     </ol>
   </fieldset>
@@ -66,57 +48,13 @@
 
 <div class="resultContainer hide" id="result">
   I think your gender is:
-  <div id="guessText"></div>
+  <div class="guess">
+    <span id="guessIcon"></span>
+    <span id="guessText"></span>
+  </div>
 </div>
 
-<script>
+<script type="text/javascript" src="chalk_test.js"></script>
 
-  var guessWeight = function (userHeight, userWeight) {
-    var genderGuess;
-    if(userHeight === "short") {
-      if(userWeight <= 130) {
-        genderGuess = "female";
-      }
-      else {
-        genderGuess = "male";
-      }
-    }
-    else if(userHeight === "average") {
-      if(userWeight <= 150) {
-        genderGuess = "female";
-      }
-      else {
-        genderGuess = "male";
-      }
-    }
-    else if(userHeight === "tall") {
-      if(userWeight <= 170) {
-        genderGuess = "female";
-      }
-      else {
-        genderGuess = "male";
-      }
-    }
-    else {
-      genderGuess = "Oops, looks like you didn't select a height."
-    }
-    return genderGuess;
-  };
-
-  $('#inputForm').on('submit',function(e){
-    e.preventDefault();
-
-    // Check that this is working on submit
-    // alert( $('#inputHeight').val());
-    // alert( $('#inputWeight').val());
-
-    var genderGuess = guessWeight($('#inputHeight').val(), $('#inputWeight').val());
-
-    $('#result').removeClass('hide');
-    $('#guessText').text(genderGuess);
-
-    $('#inputForm').hide();
-  });
-</script>
 </body>
 </html>
