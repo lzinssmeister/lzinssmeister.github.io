@@ -11,6 +11,12 @@ body {
   font-size: 16px;
   padding: 20px;
 }
+a {
+  color: #98d64c;
+}
+a:hover {
+  color: #8bc93f;
+}
 
 /* UTILITY STYLES
 ----------------------------*/
@@ -32,10 +38,11 @@ body {
 }
 #inputForm fieldset {
   border: none;
-  margin-bottom: 1.25em;
+  margin: auto auto 1.25em auto;
   text-align: center;
+  width: 400px;
 }
-#inputForm legend {
+#inputForm h1 {
   margin-bottom: 1.25em;
   font-family: "ff-tisa-web-pro", Georgia, serif;
   font-size: 20px;
@@ -90,7 +97,7 @@ body {
   color: #fff;
   display: block;
   font: 18px "ff-tisa-web-pro", Georgia, serif;
-  margin: 2em auto 0;
+  margin: 1em auto 0;
   padding: 7px 25px;
   width: 335px;
 }
@@ -131,4 +138,7 @@ body {
 }
 .male, .icon-male {
   color: #00baba;
+}
+.reload a {
+  font-size: 12px;
 }
