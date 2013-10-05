@@ -1,0 +1,303 @@
+/* Base Element Styles - Foundation Overrides
+--------------------------------------------*/
+body {
+  font-family: "adelle",serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+h1 {
+  font-family: "lft-etica",sans-serif;
+  font-weight: 400;
+  font-size: 52px;
+}
+h2 {
+  font-family: "lft-etica",sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+}
+h3 {
+  font-family: "lft-etica",sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+h4 {
+  font-family: "adelle", serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+p {
+  font-weight: inherit;
+}
+
+/* Base Media Adjustments
+--------------------------------------------*/
+@media only screen and (min-width: 768px) {
+  body {
+    font-size: 20px;
+  }
+  h1 {
+    font-size: 84px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  p {
+    text-align: justify;
+  }
+}
+
+/* Reusable Classes
+--------------------------------------------*/
+.subheader {
+  margin: 2em auto 3em;
+  text-align: justify;
+  line-height: 1.5em;
+}
+.tab {
+  padding-bottom: 2em;
+  text-align: center;
+}
+.button {
+  font-family: "lft-etica",sans-serif;
+  font-weight: 200; /* Overrides Foundation default */
+  font-size: 20px;
+  border-radius: 5px;
+}
+.tab .button {
+  padding: .5em 2em;
+  border: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.tab .icon {
+  position: relative;
+  top: -1px;
+  margin-left: 7px;
+  opacity: 0.65;
+  font-size: 16px;
+}
+.reverse-color {
+  color: #ffffff;
+}
+.dark-color {
+  color: #5b6062;
+}
+.description-text {
+  text-align: center;
+}
+.tags {
+  list-style: none;
+}
+.tags li {
+  margin: 0 25px 5px 0;
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  position: relative;
+  font-size: 16px;
+}
+.tags span {
+  padding: 6px 25px 4px;
+  background: #84d6c4;
+  color: #ffffff;
+  border-bottom-left-radius: 5px;
+  -webkit-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+}
+.tags span:before {
+  content: "";
+  float: right;
+  position: absolute;
+  top: 0;
+  right: -13px;
+  width: 0;
+  height: 0;
+  border-color: transparent transparent transparent #84d6c4;
+  border-style: solid;
+  border-width: 15px 0 15px 13px;
+}
+.tags span:after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 0;
+  float: right;
+  width: 6px;
+  height: 6px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #5bc8b0;
+}
+
+.section-divider {
+  background: #84d6c4;
+  width: 220px;
+  height: 2px;
+  margin: 2em auto;
+}
+
+/* Reusable Classes Media Adjustments
+--------------------------------------------*/
+@media only screen and (min-width: 768px) {
+  .tags li {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  .tags span:before {
+    top: -4px;
+    border-width: 18px 0 18px 13px;
+  }
+  .tags span:after {
+    top: 11px;
+  }
+  .subheader {
+    line-height: 1.75em;
+  }
+}
+
+/* Area Specific Styles
+--------------------------------------------*/
+.intro {
+  background-color: #f0f1f2;
+  border-top: 7px solid #5bc8b0;
+  border-bottom: 1px solid #e3e5e5;
+  padding: 3.25em 0 0.25em;
+}
+.social-links {
+  list-style-type: none;
+  font-size: 32px;
+}
+.social-links li {
+  display: inline;
+}
+.social-links .secondary {
+  color: #95a8af;
+}
+.social-links .secondary:hover {
+  color: #899aa1;
+}
+
+.work {
+  border-bottom: 1px solid #e3e5e5;
+  padding: 1.25em 0;
+}
+.captioned figure {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+.captioned figcaption {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  padding: 20px;
+  background: #2c3f52;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  color: #f66a75;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+  transition: transform 0.4s, opacity 0.1s 0.3s;
+}
+.no-touch .captioned figure:hover figcaption,
+.captioned figure.cs-hover figcaption{
+  opacity: 0.95;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s;
+  transition: transform 0.4s, opacity 0.1s;
+}
+.captioned figcaption a {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.captioned figcaption h3 {
+  margin: 0 0 .5em;
+  padding: 0;
+  color: #fff;
+}
+.captioned figcaption span {
+  display: none;
+}
+
+.tab-process .button {
+  background-color: #f3f4f4;
+  color: #5bc8b0;
+  transition: background-color 300ms ease-out;
+}
+.tab-process .button:hover {
+  background-color: #ebeded;
+}
+
+.tab-process,
+.process {
+  background-color: #5bc8b0;
+}
+.process {
+  border-bottom: 1px solid #e3e5e5;
+}
+
+.video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contact {
+  background-color: #f0f1f2;
+  border-bottom: 1px solid #bdbfbf;
+  padding: 2em 0 3em;
+}
+.contact .icon {
+  margin-left: 5px;
+}
+
+.copyright {
+  background-color: #c4c4c4;
+}
+.copyright p {
+  margin: 0;
+  padding: 1em 0;
+  font-family: "lft-etica",sans-serif;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Area Media Adjustments
+--------------------------------------------*/
+@media only screen and (min-width: 768px) {
+  .intro {
+    padding: 6.25em 0 4.25em;
+  }
+  .social-links {
+    font-size: 52px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .captioned figcaption span {
+    font-size: 16px;
+    display: block;
+  }
+}
