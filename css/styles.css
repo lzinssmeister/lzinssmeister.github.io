@@ -54,7 +54,6 @@ p {
   line-height: 1.5em;
 }
 .tab {
-  padding-bottom: 2em;
   text-align: center;
 }
 .button {
@@ -190,7 +189,7 @@ p {
 
 .work {
   border-bottom: 1px solid #e3e5e5;
-  padding: 1.25em 0;
+  padding: .75em 0;
 }
 .captioned figure {
   margin: 0;
@@ -297,7 +296,7 @@ p {
 --------------------------------------------*/
 @media only screen and (min-width: 768px) {
   .intro {
-    padding: 6.25em 0 4.25em;
+    padding: 4.75em 0 3.75em;
   }
   .social-links {
     font-size: 52px;
