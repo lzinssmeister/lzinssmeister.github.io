@@ -166,6 +166,11 @@ p {
   border-bottom: 1px solid #e3e5e5;
   padding: 3.25em 0 0.25em;
 }
+.intro h1 {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+}
 .social-links {
   list-style-type: none;
   font-size: 32px;
