@@ -1,0 +1,444 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="fontello.css">
+<script src="js/report-details.js"></script>
+</head>
+
+
+<style>
+
+	body{
+		background-image: url(img/background.png);
+		background-repeat: no-repeat;
+		background-position:top left;
+		background-size:1280px 673px;
+		background-color:#333333;
+		 background-attachment: fixed;
+		padding:0;
+		margin:0;
+		overflow:none;
+	}
+
+	@font-face {  
+  font-family: "FontAwesome";  
+  src: url('fonts/fontawesome-webfont.eot');  
+  src: url('fonts/fontawesome-webfont.eot?#iefix') format('eot'),   
+       url('fonts/fontawesome-webfont.woff') format('woff'),   
+       url('fonts/fontawesome-webfont.ttf') format('truetype'),   
+       url('fonts/fontawesome-webfont.svg#FontAwesome') format('svg');  
+  font-weight: normal;  
+  font-style: normal;  
+}  
+
+	.shroud{
+		width:100%;
+		height:100%;
+		background-color:#000;
+		opacity:.5;
+		display:none;
+		transition: all ease-in .2s;
+	}
+
+	.active-shroud{
+		display:block;
+		transition: all .3s ease-out;
+	}
+
+	.open{
+		width:200px;
+		height:44px;
+		position:fixed;
+		top:272px;
+		left:760px;
+		cursor:pointer;
+	}
+
+	.panel{
+		height:100%;
+		width:350px;
+		background: #f4f4f4;
+		box-shadow: -3px 0px 5px rgba(0, 0, 0, .05);
+		position:fixed;
+		top:0px;
+		right:-350px;
+		transition: all ease-in .2s;
+	}
+
+	.active-panel{
+		right:0px;
+		transition: all .3s ease-out;
+	}
+
+	.multi-select{
+		display:block;
+		height:100%;
+		width:100%;
+		font-family:"Helvetica Neue";
+		color:#333;
+		font-weight:400;
+		font-size:13px;
+		overflow-y:scroll;
+	}
+
+	.multi-select-header{
+		height:44px;
+		width:350px;
+		border-bottom:1px solid #d9d9d9;
+		display:block;
+		position:fixed;
+		z-index:10000000;
+		background-color: #ffffff;
+	}
+
+	.multi-select-header h1{
+		font-family:"Maven Pro";
+		font-size:16px;
+		color:#333;
+		margin:0;
+		line-height:44px;
+		padding-left:25px;
+		display:inline-block;
+	}
+
+	[type="button"]{
+		font-family:"Maven Pro";
+		background:#f4f4f4;
+		border:1px solid #d9d9d9;
+		padding: 0 18px 0 18px;
+		font-size:13px;
+		height:28px;
+		font-weight:600;
+		color:#333;
+		display:inline-block;
+		margin-top:-3px;
+		margin-left:105px;
+		cursor: pointer;
+		border-radius:2px;
+	}
+
+	[type="button"]:hover{
+		background:#eaeaea;
+	}
+
+	[type="button"]:active{
+		background:#c1c1c1;
+		border: 1px solid #c1c1c1;
+	}
+
+	[type="button"]:focus{
+		outline:0;
+	}
+
+	.multi-select-header-secondary{
+		height:24px;
+		width:350px;
+		margin-top:45px;
+		background-color:#f4f4f4;
+		border-bottom:1px solid #d9d9d9;
+		display:block;
+		position:fixed;
+		z-index:10000000;
+		/*box-shadow: 0px 1px 2px rgba(0,0,0,0.1);*/
+	}
+
+	.multi-select-header-secondary p{
+		display:inline-block;
+		line-height:24px;
+	}
+
+	.section-button{
+		width:49%;
+		padding:0;
+		margin:0;
+		text-align:center;
+		display:inline-block;
+		float:left;
+		border-right:1px solid #d9d9d9;
+		font-size:12px;
+		cursor:pointer;
+		color:#333;
+	}
+
+	.section-button p#show:before{
+		content:"\f06e";
+		font-family:"FontAwesome";
+		margin-right:5px;
+	}
+
+	.section-button p#hide:before{
+		content:"\f070";
+		font-family:"FontAwesome";
+		margin-right:5px;
+	}
+
+	.section-button p:before:hover, .section-button p{
+		color:#000;
+	}
+
+	.section-button:last-child{
+		border-right:none;
+	}
+
+	#sortable { 
+		list-style-type: none; 
+		margin-top: 70px;
+		padding: 0;
+		width: 100%; 
+		height:100%;
+		background-color:#f4f4f4;
+	}
+
+	.unselected {   
+	   	margin: 0;   
+	    height: 34px;  
+	    line-height: 34px;  
+	    font-size: 13px;   
+	    color: #333;  
+	    outline: 0;  
+	    padding: 0;  
+	    margin: 0;  
+	    text-indent: 14px; 
+	    border-bottom: 1px solid #d9d9d9;  
+	    position: relative;  
+	    cursor: pointer;  
+	    background:#f4f4f4!important;
+	} 
+	.ui-sortable li.ui-state-default {
+		margin: 0;   
+	    height: 34px;  
+	    line-height: 34px;  
+	    font-size: 13px;   
+	    color: #333;  
+	    outline: 0;  
+	    padding: 0;  
+	    margin: 0;  
+	    text-indent: 14px;  
+	    border-top: 1px solid #eaeaea;  
+	    border-bottom: 1px solid #d9d9d9;  
+	    position: relative;  
+	    cursor:pointer; 
+	    background:#ffffff;
+	}  
+
+
+	.ui-sortable li.ui-state-default:first-child {
+		border-top:1px solid #eaeaea;
+	}
+	.ui-sortable li.ui-state-default.unselected:first-child {  
+	    border-top:1px solid #eaeaea;  
+	}   
+
+	.ui-sortable li.ui-state-default.unselected:after{
+		content:"";
+	}
+
+	.ui-sortable li.ui-state-default:after {   
+	    content: "\f0c9"; 
+	    display: inline-block;    
+	    position: absolute; 
+	    font-family: "FontAwesome";   
+	    margin:0;
+	    padding:0;
+	    right: 14px;  
+	    top: 0px;  
+	    text-align: center;  
+	    line-height: 34px;  
+	    color: #d9d9d9;   
+	    cursor: move;  
+	    font-size:10px;
+
+}  
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  display:none;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left:0px; top: -1px;
+  width: 16px; height: 16px;
+  border: 1px solid #c1c1c1;
+  background: #fafafa;
+  border-radius: 2px;
+}
+
+[type="checkbox"]:checked + label:before {
+	background:#357eeb;
+	border:1px solid #357eeb;
+}
+
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '\f00c';
+  position: absolute;
+  top: -9px; left: -11px;
+  font-size: 12px;
+  color: #ffffff;
+  font-family: 'FontAwesome';
+  transition: all .2s;
+}
+
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+[type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 1px dotted blue;
+}
+
+label:hover:before {
+  border: 1px solid #357eeb!important;
+}
+
+p{
+	margin:0;
+	padding:0;
+}
+
+
+
+</style>
+
+
+<body>
+<div class="open">
+</div>
+
+<div class="shroud">
+</div>
+
+<div class="panel">
+	<div class="multi-select">
+		<div class="multi-select-header">
+		<h1>EDIT COLUMNS</h1>
+		<input type="button" class="done" value="DONE">
+		</div>
+		<div class="multi-select-header-secondary">
+			<div class="section-button"><p id="show">Show All</p></div>
+			<div class="section-button"><p id="hide">Hide All</p></div>
+		</div>
+
+		<ul id="sortable">
+		  <li class="ui-state-default"><p>
+		    <input class="checkbox-row" type="checkbox" id="test1" checked/>
+		    <label for="test1">Subject</label>
+		  </p></li>
+		  <li class="ui-state-default"><p>
+		    <input class="checkbox-row" type="checkbox" id="test2" checked/>
+		    <label for="test2">Status</label>
+		  </p></li>
+		  <li class="ui-state-default"><p>
+		    <input class="checkbox-row" type="checkbox" id="test3" checked/>
+		    <label for="test3">Sender</label>
+		  </p></li>
+		  <li class="ui-state-default"><p>
+		    <input class="checkbox-row" type="checkbox" id="test4" checked/>
+		    <label for="test4">Recipient</label>
+		  </p></li>
+		 <li class="ui-state-default"><p>
+		    <input class="checkbox-row" type="checkbox" id="test5" checked/>
+		    <label for="test5">Sent On</label>
+		  </p></li>
+		  <li class="ui-state-default"><p>
+		    <input class="checkbox-row" type="checkbox" id="test6" checked/>
+		    <label for="test6">Completion On</label>
+		  </p></li>
+		   <li class="ui-state-default"><p>
+		    <input class="checkbox-row" type="checkbox" id="test7" checked/>
+		    <label for="test7">Completion Time</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test8"/>
+		    <label for="test8">Created Date</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test9"/>
+		    <label for="test9">Custom Field</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test10"/>
+		    <label for="test10">Declined Date</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test11"/>
+		    <label for="test11">Date Delivered</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test12"/>
+		    <label for="test12">Document ID</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test13"/>
+		    <label for="test13">EOD Status</label>
+		  </p></li>
+		  <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test14"/>
+		    <label for="test14">EOD File Description</label>
+		  </p></li>
+		  <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test15"/>
+		    <label for="test15">EOD File Name</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test16"/>
+		    <label for="test16">EOD Profile ID</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test17"/>
+		    <label for="test17">Expiration Date</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test18"/>
+		    <label for="test18">Last Sent Date</label>
+		  </p></li>
+		   <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test19"/>
+		    <label for="test19">Reason for Declining</label>
+		  </p></li>
+		  <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test20"/>
+		    <label for="test20">Remaining Signatures</label>
+		  </p></li>
+		  <li class="ui-state-default unselected"><p>
+		    <input class="checkbox-row" type="checkbox" id="test21"/>
+		    <label for="test21">Sender Company Name</label>
+		  </p></li>
+		</ul>
+	</div>
+</div>
+
+</body>
+
+</html>

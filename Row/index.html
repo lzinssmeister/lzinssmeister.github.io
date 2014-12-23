@@ -1,0 +1,666 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="fontello.css">
+<script src="js/report-details.js"></script>
+</head>
+
+
+<style>
+
+	body{
+		background-image: url(img/background.jpg);
+		background-repeat: no-repeat;
+		background-position:top left;
+		background-size:1280px 673px;
+		background-color:#333333;
+		 background-attachment: fixed;
+		padding:0;
+		margin:0;
+		overflow:none;
+	}
+
+	@font-face {  
+  font-family: "FontAwesome";  
+  src: url('fonts/fontawesome-webfont.eot');  
+  src: url('fonts/fontawesome-webfont.eot?#iefix') format('eot'),   
+       url('fonts/fontawesome-webfont.woff') format('woff'),   
+       url('fonts/fontawesome-webfont.ttf') format('truetype'),   
+       url('fonts/fontawesome-webfont.svg#FontAwesome') format('svg');  
+  font-weight: normal;  
+  font-style: normal;  
+}  
+
+	.shroud{
+		width:100%;
+		height:100%;
+		background-color:#000;
+		opacity:.5;
+		display:none;
+		transition: all ease-in .2s;
+	}
+
+	.active-shroud{
+		display:block;
+		transition: all .3s ease-out;
+	}
+
+		.doc-list{
+			position:absolute;
+			top:133px;
+			left:228px;
+			height:540px;
+			background-color:#f4f4f4;
+			width:1052px;
+			overflow-y:scroll;
+			overflow-x:hidden;
+		}
+
+		.docs{
+			margin:0 auto;
+			width:100%;
+			height:auto;
+		}
+
+		.docs ul{
+			margin:0;
+			padding:0;
+			height:auto;
+		}
+
+		.docs ul li{
+			height:60px;	
+			width:100%;
+			display:block;
+			background-color:#ffffff;
+			border-bottom:2px solid #f4f4f4;
+			cursor:pointer;
+			/*transition:.1s ease-in;*/
+		}
+
+		.docs ul li:hover{
+			background-color: #fafafa;
+		}
+
+		.docs ul li:active{
+			background-color: #f4f4f4;
+		}
+
+		.docs ul li table{
+			height:60px;
+			width:100%;
+			display:block;
+		}
+
+		.docs ul li table tr{
+			width:100%;
+		}
+
+		.docs ul li table tr td{
+			padding-left:20px;
+			text-align: left;
+			float:left;
+		}
+
+		.docs ul li table tr td:first-child{
+			width:70%;
+		}
+
+		.docs ul li table tr td:nth-child(2) {
+			width:20%;
+	
+		}
+
+		.docs ul li table tr td:last-child {
+			width:10%;
+			padding-right: 30px;
+		}
+
+		.docs ul li table tr td:last-child .blue:active > .docs ul li:active{
+			background-color: #fafafa;
+		}
+
+		h1.doc-title{
+			margin-top:6px;
+			font-size:13px;
+			font-family:'Helvetica Neue';
+			line-height: 0px;
+		}
+
+		p.doc-recipients{
+			font-size:12px;
+			font-family:'Helvetica Neue';
+			color:#999;
+			letter-spacing: .6;
+		}
+
+		h1.doc-status{
+			margin-top:6px;
+			font-size:13px;
+			font-family:'Helvetica Neue';
+			line-height: 0px;
+			margin-left:-14px;
+		}
+
+		h1.doc-status:before{
+			content:"\f069";
+			font-family: "FontAwesome";
+			color: #357eeb;
+			position:relative;
+			right:10px;
+		}
+
+		p.doc-metadata{
+			font-size:12px;
+			font-family:'Helvetica Neue';
+			color:#999;
+			letter-spacing: .6;
+		}
+
+		/****** BUTTONS ******/
+
+		[type="button"]{
+			font-family: 'Gotham';
+			font-weight:500;
+			cursor:pointer;
+			border-radius:2px;
+			border:none;
+			outline:none;
+			letter-spacing: .6;
+		}
+
+		[type="button"].yellow-yellow{
+			background-color: #ffc820;
+			color:#333;
+			margin-left:24px;
+		}
+
+		[type="button"].yellow-yellow:hover{
+			background-color: #f7ba00;
+		}
+
+		[type="button"].yellow-yellow:active{
+			background-color: #ea9102;
+		}
+
+		[type="button"].blue{
+			background-color: #357eeb;
+			color:#fff;
+			box-shadow: 0px 2px 0px #1b49a0;
+		}
+
+		[type="button"].blue:hover{
+			background-color: #3079d1;
+		}
+
+		[type="button"].blue:active{
+			background-color: #1b49a0;
+		}
+
+		[type="button"].gray{
+			background-color: #f4f4f4;
+			color:#333;
+			border: 1px solid #d9d9d9;
+			box-shadow: 0px 2px 0px #1b49a0;
+		}
+
+		[type="button"].gray:hover{
+			background-color: #fafafa;
+		}
+
+		[type="button"].gray:active{
+			background-color: #eaeaea;
+		}
+
+		[type="button"].flat{
+			box-shadow:none!important;
+		}
+
+		[type="button"].small{
+			height:28px;
+			font-size:13px;
+			line-height:14px;
+			padding: 8px 20px 8px 20px;
+		}
+
+		[type="button"].xl{
+			height:40px;
+			font-size:14px;
+			line-height:14px;
+			padding: 8px 20px 8px 20px;
+		}
+
+		select{
+			height:28px;
+			font-size:13px;
+			line-height:14px;
+			padding: 8px 20px 8px 20px;
+			color:#333;
+			background-color: #f4f4f4;
+			border:1px solid #d9d9d9;
+			border-radius: 2px;
+			font-family: 'Gotham';
+			font-weight:500;
+			cursor:pointer;
+			border-radius: 2px;
+			letter-spacing: .6;
+			-webkit-appearance: none;
+		}
+</style>
+
+<body>
+	<div class="doc-list">
+						<div class="docs">
+							<ul>
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Tangerine Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 16, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Grape Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 15, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Lettuce Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 14, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Pineapple Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 14, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Apple Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 14, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Kumquat Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 13, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Lychee Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 11, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Banana Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 11, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Apricot Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 10, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Peach Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 9, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Kale Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 7, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Tomato Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 6, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Basil Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 5, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Rosemary Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 4, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Thyme Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 4, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Mango Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 3, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Strawberry Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 3, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								<li onclick="alert('Thank you. You have completed the task.')">
+									<table>
+										<tr>
+											<td>
+											<h1 class="doc-title">Blueberry Purchase Order</h1>
+											<p class="doc-recipients">To: John Hancock</p>
+											</td>
+											<td>
+											<h1 class="doc-status">Needs to Sign</h1>
+											<p class="doc-metadata">on November 3, 2014</p>
+											</td>
+											<td>
+												<select id="actions-dropdown">
+													<option selected disabled value="ACTIONS">ACTIONS</option>
+													<option value="Delete">Delete</option>
+													<option value="Copy">Copy</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</li>								
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+</body>
+
+<script>
+$('#actions-dropdown').change(function() {
+    // alert('Thank you. You have completed the task.');
+    $('#actions-dropdown').val('ACTIONS');
+});
+</script>
+
+</html>
