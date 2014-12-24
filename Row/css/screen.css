@@ -1,0 +1,248 @@
+body {
+  background-image: url(../img/background.jpg);
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 1280px 673px;
+  background-color: #fff;
+  background-attachment: fixed;
+  padding: 0;
+  margin: 0;
+  overflow: none;
+  font-size: 13px;
+  font-family: 'Open Sans', Helvetica, sans-serif; }
+
+@font-face {
+  font-family: "FontAwesome";
+  src: url("../fonts/fontawesome-webfont.eot");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix") format("eot"), url("../fonts/fontawesome-webfont.woff") format("woff"), url("../fonts/fontawesome-webfont.ttf") format("truetype"), url("../fonts/fontawesome-webfont.svg#FontAwesome") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+h1.coverup {
+  background: #fff;
+  width: 800px;
+  margin-left: 248px;
+  position: absolute;
+  top: 54px; }
+
+ul.sidebar {
+  background: #F4F4F4;
+  width: 228px;
+  height: 340px;
+  margin-top: 62px;
+  list-style: none;
+  padding: 4px 0 0 0;
+  line-height: 30px; }
+  ul.sidebar .category {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px 0; }
+    ul.sidebar .category:hover {
+      background: none; }
+  ul.sidebar li {
+    padding-left: 30px; }
+    ul.sidebar li:hover {
+      background: #eaeaea;
+      cursor: pointer; }
+    ul.sidebar li.active {
+      background: rgba(35, 92, 170, 0.25);
+      cursor: default; }
+
+.doc-list {
+  position: absolute;
+  top: 133px;
+  left: 228px;
+  height: 540px;
+  background-color: #f4f4f4;
+  width: 1052px;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+
+.docs {
+  margin: 0 auto;
+  width: 100%;
+  height: auto; }
+  .docs ul {
+    margin: 0;
+    padding: 0;
+    height: auto; }
+    .docs ul li {
+      position: relative;
+      height: 60px;
+      width: 100%;
+      display: block;
+      background-color: #ffffff;
+      border-bottom: 2px solid #f4f4f4;
+      cursor: pointer;
+      /*transition:.1s ease-in;*/ }
+      .docs ul li:hover {
+        background-color: #fafafa; }
+      .docs ul li:active {
+        background-color: #f4f4f4; }
+      .docs ul li table {
+        height: 60px;
+        width: 100%;
+        display: block;
+        padding-right: 150px; }
+        .docs ul li table tr {
+          width: 100%; }
+          .docs ul li table tr td {
+            padding-left: 20px;
+            text-align: left;
+            float: left; }
+            .docs ul li table tr td:first-child {
+              width: 65%; }
+            .docs ul li table tr td:last-child {
+              width: 20%; }
+              .docs ul li table tr td:last-child .blue:active > .docs ul li:active {
+                background-color: #fafafa; }
+
+h1.user-name {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 0px; }
+h1.user-role {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 0px;
+  margin-left: -14px; }
+
+p.user-email {
+  font-size: 12px;
+  color: #999;
+  letter-spacing: .6; }
+
+/****** BUTTONS ******/
+[type="button"] {
+  cursor: pointer;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  letter-spacing: .6; }
+  [type="button"].yellow-yellow {
+    background-color: #ffc820;
+    color: #333;
+    margin-left: 24px; }
+    [type="button"].yellow-yellow:hover {
+      background-color: #f7ba00; }
+    [type="button"].yellow-yellow:active {
+      background-color: #ea9102; }
+  [type="button"].blue {
+    background-color: #357eeb;
+    color: #fff;
+    box-shadow: 0px 2px 0px #1b49a0; }
+    [type="button"].blue:hover {
+      background-color: #3079d1; }
+    [type="button"].blue:active {
+      background-color: #1b49a0; }
+  [type="button"].gray {
+    background-color: #f4f4f4;
+    color: #333;
+    border: 1px solid #d9d9d9;
+    box-shadow: 0px 2px 0px #1b49a0; }
+    [type="button"].gray:hover {
+      background-color: #fafafa; }
+    [type="button"].gray:active {
+      background-color: #eaeaea; }
+  [type="button"].flat {
+    box-shadow: none !important; }
+  [type="button"].small {
+    height: 28px;
+    font-size: 13px;
+    line-height: 14px;
+    padding: 8px 20px 8px 20px; }
+  [type="button"].xl {
+    height: 40px;
+    font-size: 14px;
+    line-height: 14px;
+    padding: 8px 20px 8px 20px; }
+
+.actions-dropdown {
+  position: absolute;
+  top: 17px;
+  right: 30px;
+  font-size: 13px;
+  line-height: 14px;
+  padding: 8px 20px 8px 20px;
+  color: #333;
+  background-color: #f4f4f4;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  cursor: pointer;
+  border-radius: 2px;
+  letter-spacing: .6;
+  -webkit-appearance: none; }
+
+/** FORM STYLES *********************************************************/
+.form-group {
+  margin: 30px 0; }
+  .form-group .label {
+    display: block;
+    margin-bottom: 5px; }
+  .form-group input {
+    width: 100%;
+    font-size: 14px;
+    height: 30px;
+    border: #ccc; }
+
+.select-wrap {
+  background: #fff;
+  border: #ccc; }
+  .select-wrap select {
+    background: transparent;
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 30px;
+    -webkit-appearance: none; }
+
+.btn {
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: none;
+  margin: 0 5px 0 0; }
+  .btn.btn-lg {
+    padding: 7px 18px;
+    font-size: 14px; }
+  .btn.btn-primary {
+    background-color: #3387f4;
+    color: #fff; }
+  .btn.btn-minor {
+    background: none;
+    color: #fff; }
+
+/** SIMPLE MODALS *******************************************************/
+#basic-modal-content {
+  display: none; }
+
+/* Overlay */
+#simplemodal-overlay {
+  background-color: #000; }
+
+/* Container */
+#simplemodal-container {
+  height: 360px;
+  width: 400px;
+  color: #bbb;
+  background-color: #333;
+  border: 4px solid #444;
+  padding: 12px; }
+  #simplemodal-container .simplemodal-data {
+    padding: 8px; }
+  #simplemodal-container a {
+    color: #ddd; }
+    #simplemodal-container a.modalCloseImg {
+      background: url(../img/basic/x.png) no-repeat;
+      width: 25px;
+      height: 29px;
+      display: inline;
+      z-index: 3200;
+      position: absolute;
+      top: -15px;
+      right: -16px;
+      cursor: pointer; }
+  #simplemodal-container h2 {
+    margin-top: 0; }
